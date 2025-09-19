@@ -48,22 +48,38 @@
         "CO2 Savings": "50kg annually vs grid power"
       }
     },
-    "plastic-pen": {
-  "name": "Plastic Ballpoint Pen",
-  "category": "Stationery",
-  "image": "🖊️",
-  "ecoScore": 25,
-  "recommendation": "Consider Eco Alternatives",
-  "tip": "Plastic pens create long-lasting waste. Consider using refillable or metal pens instead.",
+"regular-soap": {
+  "name": "Commercial Bar Soap",
+  "category": "Personal Care",
+  "image": "🧼",
+  "ecoScore": 30,
+  "recommendation": "Use Organic Handmade Soap",
+  "tip": "Contains synthetic chemicals and plastic microbeads. Try to switch to eco-friendly alternatives.",
   "details": {
-    "Material": "Plastic Body + Ink Cartridge",
-    "Ink Type": "Standard Ballpoint",
-    "Lifespan": "1-2 months",
+    "Ingredients": "Sodium Lauryl Sulfate, Fragrance, Plastic Microbeads",
+    "Packaging": "Plastic wrap",
     "Recyclable": "No",
     "Carbon Impact": "High",
-    "Packaging": "Plastic wrap / Box",
-    "Usage": "Daily writing"
+    "Usage": "Daily hygiene"
+  }
+},
+"eco-soap": {
+  "name": "Organic Handmade Soap",
+  "category": "Personal Care",
+  "image": "🧼🌿",
+  "ecoScore": 90,
+  "recommendation": "Recommended",
+  "tip": "Made with natural oils and zero plastic packaging. Biodegradable and gentle on skin.",
+  "details": {
+    "Ingredients": "Coconut Oil, Olive Oil, Essential Oils",
+    "Packaging": "Recycled paper",
+    "Recyclable": "Yes",
+    "Carbon Impact": "Low",
+    "Usage": "Daily hygiene"
   }
 }
+
+
+
   }
 }

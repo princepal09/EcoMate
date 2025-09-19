@@ -26,6 +26,7 @@ async function loadProductsData() {
   }
 }
 
+
 // Event Listeners
 searchInput.addEventListener("input", handleSearchInput);
 searchInput.addEventListener("keypress", handleKeyPress);
@@ -65,43 +66,49 @@ function handleKeyPress(e) {
 }
 
 function clearSearch() {
-    searchInput.value = "";
-    clearBtn.style.opacity = "0";
-    resultsSection.classList.add("hidden");
+  searchInput.value = "";
+  clearBtn.style.opacity = "0";
+  resultsSection.classList.add("hidden");
+  loadingState.classList.add("hidden");
 
-    // Hide suggestions
-    const suggestionsContainer = document.getElementById("ecoSuggestions");
-    suggestionsContainer.classList.add("hidden");
+  // Hide suggestions
+  const suggestionsContainer = document.getElementById("ecoSuggestions");
+  suggestionsContainer.classList.add("hidden");
 
-    // Reset search icon
-    const searchIcon = document.getElementById("searchIcon");
-    searchIcon.classList.add("text-gray-400");
-    searchIcon.classList.remove("text-emerald-500", "scale-110");
+  // Cancel any scheduled search
+  if (searchTimeout) {
+    clearTimeout(searchTimeout);
+    searchTimeout = null;
+  }
+
+  // Reset search icon
+  const searchIcon = document.getElementById("searchIcon");
+  searchIcon.classList.add("text-gray-400");
+  searchIcon.classList.remove("text-emerald-500", "scale-110");
 }
 
+let searchTimeout = null; // global variable
 
 function performSearch() {
-    const query = searchInput.value.trim();
-    if (!query || !productsData) return;
+  const query = searchInput.value.trim();
+  if (!query || !productsData) return;
 
-    // Hide suggestions
-    const suggestionsContainer = document.getElementById("ecoSuggestions");
-    suggestionsContainer.classList.add("hidden");
+  // Show loading state
+  loadingState.classList.remove("hidden");
+  resultsSection.classList.add("hidden");
 
-    // Show loading state
-    loadingState.classList.remove("hidden");
-    resultsSection.classList.add("hidden");
+  // Clear any previous timeout
+  if (searchTimeout) clearTimeout(searchTimeout);
 
-    setTimeout(() => {
-        const productData = analyzeProduct(query);
-        displayResults(productData);
+  searchTimeout = setTimeout(() => {
+    const productData = analyzeProduct(query);
+    displayResults(productData);
 
-        loadingState.classList.add("hidden");
-        resultsSection.classList.remove("hidden");
+    loadingState.classList.add("hidden");
+    resultsSection.classList.remove("hidden");
 
-        // Smooth scroll to results
-        resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 2500);
+    resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 2500);
 }
 
 function analyzeProduct(query) {
@@ -142,75 +149,80 @@ function createRealisticProduct(query) {
 }
 
 function showEcoAlternatives(query) {
-    if (!productsData) return;
+  if (!productsData) return;
 
-    const suggestionsContainer = document.getElementById("ecoSuggestions");
+  const suggestionsContainer = document.getElementById("ecoSuggestions");
 
-    const ecoProducts = Object.values(productsData.products)
-        .filter(p => p.ecoScore >= 70 && p.name.toLowerCase().includes(query.toLowerCase()));
+  const ecoProducts = Object.values(productsData.products).filter(
+    (p) =>
+      p.ecoScore >= 70 && p.name.toLowerCase().includes(query.toLowerCase())
+  );
 
-    // Agar koi eco-friendly product nahi mila → fallback top 2 products
-    const alternatives = ecoProducts.length
-        ? ecoProducts.slice(0, 2)
-        : Object.values(productsData.products)
-            .sort((a, b) => b.ecoScore - a.ecoScore)
-            .slice(0, 2); // only top 2
+  // Agar koi eco-friendly product nahi mila → fallback top 2 products
+  const alternatives = ecoProducts.length
+    ? ecoProducts.slice(0, 2)
+    : Object.values(productsData.products)
+        .sort((a, b) => b.ecoScore - a.ecoScore)
+        .slice(0, 2); // only top 2
 
-    if (alternatives.length === 0) {
-        suggestionsContainer.classList.add("hidden");
-        return;
-    }
+  if (alternatives.length === 0) {
+    suggestionsContainer.classList.add("hidden");
+    return;
+  }
 
-    suggestionsContainer.innerHTML = alternatives.map(p => {
-        const color = p.ecoScore >= 85 ? 'bg-green-100 hover:bg-green-200' : 'bg-yellow-100 hover:bg-yellow-200';
-        return `
+  suggestionsContainer.innerHTML = alternatives
+    .map((p) => {
+      const color =
+        p.ecoScore >= 85
+          ? "bg-green-100 hover:bg-green-200"
+          : "bg-yellow-100 hover:bg-yellow-200";
+      return `
             <div class="px-4 py-3 ${color} cursor-pointer transition-all duration-200 flex justify-between items-center border-b last:border-none">
                 <span class="font-medium text-gray-800">${p.name}</span>
                 <span class="font-semibold text-gray-700">${p.ecoScore}/100</span>
             </div>
         `;
-    }).join("");
+    })
+    .join("");
 
-    suggestionsContainer.classList.remove("hidden");
+  suggestionsContainer.classList.remove("hidden");
 
-    // Click → open product in main card
-    Array.from(suggestionsContainer.children).forEach((el, i) => {
-        el.addEventListener("click", () => {
-            const selectedProduct = alternatives[i];
-            searchInput.value = selectedProduct.name;
-            suggestionsContainer.classList.add("hidden");
-            displayResults(selectedProduct);
-            resultsSection.classList.remove("hidden");
-            resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
+  // Click → open product in main card
+  Array.from(suggestionsContainer.children).forEach((el, i) => {
+    el.addEventListener("click", () => {
+      const selectedProduct = alternatives[i];
+      searchInput.value = selectedProduct.name;
+      suggestionsContainer.classList.add("hidden");
+      displayResults(selectedProduct);
+      resultsSection.classList.remove("hidden");
+      resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+  });
 }
 
 // Input listener
 searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim();
-    const suggestionsContainer = document.getElementById("ecoSuggestions");
-    if (!query) {
-        suggestionsContainer.classList.add("hidden");
-        suggestionsContainer.innerHTML = "";
-        return;
-    }
-    showEcoAlternatives(query);
+  const query = searchInput.value.trim();
+  const suggestionsContainer = document.getElementById("ecoSuggestions");
+  if (!query) {
+    suggestionsContainer.classList.add("hidden");
+    suggestionsContainer.innerHTML = "";
+    return;
+  }
+  showEcoAlternatives(query);
 });
 
 // Input listener
 searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim();
-    const suggestionsContainer = document.getElementById("ecoSuggestions");
-    if (!query) {
-        suggestionsContainer.classList.add("hidden");
-        suggestionsContainer.innerHTML = "";
-        return;
-    }
-    showEcoAlternatives(query);
+  const query = searchInput.value.trim();
+  const suggestionsContainer = document.getElementById("ecoSuggestions");
+  if (!query) {
+    suggestionsContainer.classList.add("hidden");
+    suggestionsContainer.innerHTML = "";
+    return;
+  }
+  showEcoAlternatives(query);
 });
-
-
 
 function displayResults(product) {
   // Update product overview
