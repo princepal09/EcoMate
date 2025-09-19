@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="shortcut icon" href="./public/images/favicon-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
     <script>
         tailwind.config = {
             theme: {
@@ -132,11 +133,11 @@
 
                         <!-- Search Input -->
                         <input type="text" id="searchInput" placeholder="Search products..."
-                            class="flex-1 py-4 sm:py-6 text-base sm:text-lg bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 focus:placeholder-gray-300 transition-all duration-300 min-w-0 order-2">
+                            class="flex-1 py-4 mr-7 sm:py-6 text-base sm:text-lg bg-transparent border-none outline-none text-gray-700 placeholder-gray-400 focus:placeholder-gray-300 transition-all duration-300 min-w-0 order-2">
 
                         <!-- Clear Button -->
                         <button id="clearBtn"
-                            class="p-2 sm:p-3 text-gray-400 hover:text-red-500 transition-all duration-300 opacity-0 hover:scale-125 rounded-full hover:bg-red-50 touch-manipulation order-3">
+                            class="p-2 sm:p-3 text-gray-400 mr-5 hover:text-red-500 transition-all duration-300 opacity-0 hover:scale-125 rounded-full hover:bg-red-50 touch-manipulation order-3">
                             <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
@@ -283,7 +284,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <div class="bg-white/40 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 cursor-pointer hover:shadow-2xl transition-all duration-500 transform hover:scale-105 sample-product border border-white/50 animate-float hover:bg-white/60 touch-manipulation"
                     data-product="bamboo-toothbrush">
-                    <div class="text-4xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-center">🦷</div>
+                    
+                    <div class="text-4xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6 text-center">🪥</div>
                     <h4 class="font-poppins font-bold text-gray-800 mb-2 sm:mb-3 text-center text-lg sm:text-xl">Bamboo
                         Toothbrush</h4>
                     <p class="text-gray-600 text-center text-sm sm:text-base lg:text-lg">100% biodegradable bamboo
