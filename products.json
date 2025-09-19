@@ -1,0 +1,69 @@
+{
+  "products": {
+    "bamboo-toothbrush": {
+      "name": "Eco Bamboo Toothbrush",
+      "category": "Personal Care",
+      "image": "🦷",
+      "ecoScore": 95,
+      "recommendation": "Highly Recommended",
+      "tip": "Bamboo toothbrushes are 100% biodegradable and help reduce plastic waste by up to 4.7 billion toothbrushes annually! Each bamboo toothbrush can replace 3-4 plastic ones in its lifetime.",
+      "details": {
+        "Material": "Sustainable Bamboo Handle",
+        "Bristles": "BPA-Free Soft Nylon",
+        "Packaging": "100% Recyclable Cardboard",
+        "Lifespan": "3-4 Months Regular Use",
+        "Biodegradable": "Handle decomposes in 6 months",
+        "Carbon Footprint": "75% lower than plastic"
+      }
+    },
+    "organic-cotton-tshirt": {
+      "name": "Organic Cotton Essential T-Shirt",
+      "category": "Sustainable Fashion",
+      "image": "👕",
+      "ecoScore": 88,
+      "recommendation": "Recommended",
+      "tip": "Organic cotton uses 91% less water than conventional cotton and supports healthier soil! This t-shirt saves approximately 2,700 liters of water compared to regular cotton shirts.",
+      "details": {
+        "Material": "100% GOTS Certified Organic Cotton",
+        "Dyes": "Natural, Non-Toxic Plant-Based",
+        "Certification": "Global Organic Textile Standard",
+        "Origin": "Fair Trade Certified Farms",
+        "Water Savings": "2,700L less than conventional",
+        "Pesticide-Free": "No harmful chemicals used"
+      }
+    },
+    "solar-power-bank": {
+      "name": "Solar Power Bank 20,000mAh",
+      "category": "Renewable Energy Electronics",
+      "image": "🔋",
+      "ecoScore": 82,
+      "recommendation": "Good Eco Choice",
+      "tip": "Solar power banks reduce dependency on grid electricity and can save up to 50kg of CO2 per year! Perfect for outdoor adventures while staying environmentally conscious.",
+      "details": {
+        "Capacity": "20,000mAh High Density",
+        "Solar Panel": "High-Efficiency Monocrystalline",
+        "Ports": "USB-A, USB-C, Wireless Charging",
+        "Durability": "IP65 Waterproof Rating",
+        "LED Indicators": "Smart charging status",
+        "CO2 Savings": "50kg annually vs grid power"
+      }
+    },
+    "plastic-pen": {
+  "name": "Plastic Ballpoint Pen",
+  "category": "Stationery",
+  "image": "🖊️",
+  "ecoScore": 25,
+  "recommendation": "Consider Eco Alternatives",
+  "tip": "Plastic pens create long-lasting waste. Consider using refillable or metal pens instead.",
+  "details": {
+    "Material": "Plastic Body + Ink Cartridge",
+    "Ink Type": "Standard Ballpoint",
+    "Lifespan": "1-2 months",
+    "Recyclable": "No",
+    "Carbon Impact": "High",
+    "Packaging": "Plastic wrap / Box",
+    "Usage": "Daily writing"
+  }
+}
+  }
+}
